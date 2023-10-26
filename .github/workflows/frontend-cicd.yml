@@ -29,6 +29,7 @@ jobs:
 
   depchecktest:
     runs-on: ubuntu-latest
+    needs: build
     name: depecheck_test
     steps:
       - name: Checkout
@@ -52,7 +53,7 @@ jobs:
 
   test-stage:
     runs-on: ubuntu-latest
-    needs: build
+    needs: ['build', 'depchecktest']
     steps:
       - name: Running Tests
         uses: actions/checkout@v3
@@ -62,7 +63,7 @@ jobs:
     name: Build Docker image and push to repositories
     # run only when code is compiling and tests are passing
     runs-on: ubuntu-latest
-    needs: ['build', 'test-stage']
+    needs: ['build', 'depchecktest', 'test-stage']
 
     # steps to perform in job
     steps:
@@ -104,7 +105,7 @@ jobs:
 
   Docker-image-scan:
     runs-on: ubuntu-latest
-    needs: ['build-and-push-docker-image', 'test-stage']
+    needs: ['build', 'depchecktest', 'build-and-push-docker-image', 'test-stage']
     steps:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
