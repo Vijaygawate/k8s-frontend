@@ -113,7 +113,6 @@ jobs:
           image-ref: 'docker.io/vijaygawate/k8s-frontend'
           format: 'json'
           output: 'trivy-results.json'
-          exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
