@@ -48,7 +48,7 @@ jobs:
       - name: Upload Test results
         uses: actions/upload-artifact@master
         with:
-           name: Depcheck report
+           name: Dependency check report
            path: ${{github.workspace}}/reports
 
   test-stage:
@@ -116,10 +116,11 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
         with:
-          sarif_file: 'trivy-results.json'
+           name: Trvy scan report
+           path: ${{github.workspace}}/reports
 
   update-manifest-stage:
     runs-on: ubuntu-latest
