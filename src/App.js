@@ -50,7 +50,7 @@ function App() {
       </header>
       <div className="Grid">
         <div className="Grid-Item">
-          <input type="Enter a word here" value={input} onInput={e => setInput(e.target.value)} />
+          <input type="Enter a Skill here" value={input} onInput={e => setInput(e.target.value)} />
           <button onClick={sendToDb}> Add </button>
           <button onClick={clear}>Clear</button>
         </div>
