@@ -136,7 +136,7 @@ jobs:
           git config --global user.email "vijaygawate79@gmail.com"
           git config --global user.name "Vijaygawate"
           echo ${{ github.sha }}
-          sed -i "s#${{ github.actor }}.*#${{ github.actor }}/k8s-frontend:${{ github.sha }}#g" frontend.yaml
+          sed -i "s#vijaygawate/k8s-frontend.*#vijaygawate/k8s-frontend:${{ github.sha }}#g" frontend.yaml
           git add -A
           git commit -am "Update image for - ${{ github.sha }}"
       - run: echo ${{ github }}
